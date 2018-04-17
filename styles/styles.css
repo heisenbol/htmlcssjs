@@ -1,0 +1,50 @@
+body {
+	
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+	color:#585757;
+}
+
+a {
+	text-decoration:none;
+}
+
+a:visited {
+	color:red;
+}
+a:hover {
+	color:green;
+}
+
+
+h2 {
+	color:red;
+}
+h2#someid {
+	color:blue;
+}
+
+h3 {
+	letter-spacing: 3px;
+
+}
+
+h3.someclass {
+	letter-spacing: 8px;
+}
+
+.somedivclass {
+	background-color: gray;
+	color:white;
+	padding: 10px 10px 10px 10px;
+	margin-bottom:3em;
+}
+
+.somedivclass h3{
+	color:blue;
+}
+
+p + p {
+	font-size:140%;
+}
