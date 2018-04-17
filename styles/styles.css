@@ -1,50 +1,50 @@
-body {
+.albumImageContainer {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 0;
+	margin: 0;
+}
+.albumImageContainer .item {
+	width: 24%;
 	
 }
-
-h1, h2, h3, h4, h5, h6, h7 {
-	color:#585757;
+.albumImageContainer .imageContainer img {
+	width:100%;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
 }
-
-a {
-	text-decoration:none;
+.item .controls {
+	text-align:center;
 }
-
-a:visited {
-	color:red;
-}
-a:hover {
-	color:green;
-}
-
-
-h2 {
-	color:red;
-}
-h2#someid {
+.item .controls span {
+	cursor:pointer;
 	color:blue;
 }
 
-h3 {
-	letter-spacing: 3px;
-
+@media only screen and (max-width: 1000px) {
+	.albumImageContainer .item {
+		width: 30%;
+		
+	}
 }
 
-h3.someclass {
-	letter-spacing: 8px;
+@media only screen and (max-width: 800px) {
+	.albumImageContainer .item {
+		width: 48%;
+		
+	}
 }
 
-.somedivclass {
-	background-color: gray;
-	color:white;
-	padding: 10px 10px 10px 10px;
-	margin-bottom:3em;
-}
-
-.somedivclass h3{
-	color:blue;
-}
-
-p + p {
-	font-size:140%;
+@media only screen and (max-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
+    .albumImageContainer {
+		display:block;
+    }
+	.albumImageContainer .item {
+		width: 100%;
+	}
 }
