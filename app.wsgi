@@ -36,25 +36,27 @@ bottle.debug(True)
 def index():
     response.content_type = 'text/html; charset=utf-8'
     session = bottle.request.environ.get('beaker.session')
-    return template('albums')
+    
+    albums = getAlbums()
+    
+    return template('albums', albums=albums)
 
 @route('/static/<filepath:path>')
-def server_static(filepath):
+def static(filepath):
     return static_file(filepath, root='/var/www/htmlcssjs/static')
 
 @route('/getImages', method='POST')
-def login():
+def getImages():
     session = bottle.request.environ.get('beaker.session')
     
     # TODO ensure user is loged in
     # if not, call 
     # bottle.abort(401, "Access denied")
     
-    folder = bottle.request.params.get('folder',False)
+    albumId = bottle.request.params.get('albumId',0)
     
-    # TODO make request to directory service to retrieve the images of this user for given folder
+    # TODO make request to directory service to retrieve the images of this user for given albumId
     
-
     dummyImages = []
     dummyImages.append({'fileName': 'static/imgs/01.jpg', 'commentCount': random.randint(1, 100)})
     dummyImages.append({'fileName': 'static/imgs/02.jpg', 'commentCount': random.randint(1, 100)})
@@ -69,15 +71,23 @@ def login():
     dummyImages.append({'fileName': 'static/imgs/11.jpg', 'commentCount': random.randint(1, 100)})
 
     result = []
-    imagesToReturn = random.randint(1, len(dummyImages))
-    for x in range(0, imagesToReturn):
-        result.append(dummyImages[x])		
+    if albumId != '0':
+        imagesToReturn = random.randint(1, len(dummyImages))
+        for x in range(0, imagesToReturn):
+            result.append(dummyImages[x])		
 
     jsonImageData = json.JSONEncoder().encode(result)
 
     response.content_type = 'application/json; charset=utf-8'
     return [jsonImageData]
 
-
-
+def getAlbums():
+    dummyAlbums = []	
+    dummyAlbums.append({'title': 'Album1 & ', 'id': 100})
+    dummyAlbums.append({'title': 'Alb<b>um2</b>', 'id': 101})
+    dummyAlbums.append({'title': 'Album3', 'id': 102})
+    dummyAlbums.append({'title': 'Album4', 'id': 103})
+    dummyAlbums.append({'title': 'Album5', 'id': 104})
+    
+    return dummyAlbums
     

@@ -8,7 +8,11 @@
 		<link rel="stylesheet" href="static/libs/jsOnlyLightbox/css/lightbox.min.css">
 	</head>
 	<body>
-		
+		<ul class="albumlist">
+			%for album in albums:
+				<li onclick="retrieveAndDisplayImages({{album['id']}})">{{album['title']}}</li>
+			%end
+		</ul>
 		<div class="albumImageContainer">
 			<div class="loading"><img src="static/assets/loading.gif" alt="loading"></div>
 		</div>

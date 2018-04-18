@@ -3,11 +3,11 @@
 document.addEventListener('DOMContentLoaded', initPage, false);
 
 function initPage() {
-	// initially, show the root folder
-	retrieveAndDisplayImages('');
+	// initially, show the root albumId
+	retrieveAndDisplayImages(0);
 }
 
-function retrieveAndDisplayImages(folder) {
+function retrieveAndDisplayImages(albumId) {
 	// remove any existing images
 	var existingItems = document.querySelectorAll(".albumImageContainer .item");
 	var count;
@@ -20,7 +20,7 @@ function retrieveAndDisplayImages(folder) {
 	var spinner = document.querySelector(".albumImageContainer .loading");
 	spinner.style.display = "block";
 	
-	// fetch image data for given folder and dispatch to callback method
+	// fetch image data for given albumId and dispatch to callback method
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', 'getImages');
 	xhr.setRequestHeader('Content-Type', 'application/json');
@@ -34,7 +34,7 @@ function retrieveAndDisplayImages(folder) {
 		hideSpinner();
 	};
 	xhr.send(JSON.stringify({
-		folder: folder
+		albumId: albumId
 	}));
 }
 
